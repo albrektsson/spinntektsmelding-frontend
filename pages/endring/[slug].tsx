@@ -98,13 +98,13 @@ const Endring: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> 
   const tilbakestillMaanedsinntekt = useBoundStore((state) => state.tilbakestillMaanedsinntekt);
   const foreslaattBestemmendeFravaersdag = useBoundStore((state) => state.foreslaattBestemmendeFravaersdag);
   const kanBruttoinntektTilbakebestilles = useBoundStore((state) => state.kanBruttoinntektTilbakebestilles);
-  const [opprinneligRefusjonEndringer, opprinneligRefusjonskravetOpphoerer, harRefusjonEndringer] = useBoundStore(
-    (state) => [
+  const [opprinneligRefusjonEndringer, opprinneligRefusjonskravetOpphoerer, harRefusjonEndringer, manglerInnsendtData] =
+    useBoundStore((state) => [
       state.opprinneligRefusjonEndringer,
       state.opprinneligRefusjonskravetOpphoerer,
-      state.harRefusjonEndringer
-    ]
-  );
+      state.harRefusjonEndringer,
+      state.manglerInnsendtData
+    ]);
   const [senderInn, setSenderInn] = useState<boolean>(false);
   const [ingenTilgangOpen, setIngenTilgangOpen] = useState<boolean>(false);
 
@@ -344,7 +344,7 @@ const Endring: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> 
               )}
               <Skillelinje />
               <Heading2>Refusjon</Heading2>
-              {!inngangFraKvittering && (
+              {!inngangFraKvittering && !manglerInnsendtData && (
                 <>
                   <BodyLong>I siste inntektsmelding hadde dere følgende refusjonskrav:</BodyLong>
                   <H3Label unPadded topPadded>
@@ -418,7 +418,7 @@ const Endring: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> 
                   )}
                 </>
               )}
-              {endringerAvRefusjon === 'Ja' && (
+              {(endringerAvRefusjon === 'Ja' || manglerInnsendtData) && (
                 <>
                   {!inngangFraKvittering && <Heading2>Angi de refusjonskravene som har blitt endret.</Heading2>}
                   <RadioGroup

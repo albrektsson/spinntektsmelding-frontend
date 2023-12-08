@@ -31,7 +31,7 @@ export interface RefusjonArbeidsgiverState {
   oppdaterRefusjonEndringer: (endringer: Array<EndringsBelop>) => void;
   initRefusjonEndringer: (endringer: Array<EndringsBelop>) => void;
   setHarRefusjonEndringer: (harEndringer?: YesNo) => void;
-  initLonnISykefravaeret: (lonnISykefravaeret: LonnISykefravaeret) => void;
+  initLonnISykefravaeret: (lonnISykefravaeret?: LonnISykefravaeret) => void;
   initRefusjonskravetOpphoerer: (status: YesNo, opphorsdato?: Date, harEndringer?: YesNo) => void;
   tilbakestillRefusjoner: () => void;
 }

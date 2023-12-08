@@ -17,7 +17,7 @@ export interface SkjemadataState {
   setEndringBruttolonn: (endring: YesNo) => void;
   setEndringerAvRefusjon: (endring: YesNo) => void;
   setSkjemaKvitteringEksterntSystem: (eksterntSystem: SkjemaKvitteringEksterntSystem) => void;
-  tracker: string;
+  setManglerForespurtData: (mangler: boolean) => void;
   henterInntektsdata: boolean;
   kvitteringInnsendt?: Date;
   skjemaFeilet: boolean;
@@ -27,6 +27,7 @@ export interface SkjemadataState {
   endringBruttolonn?: YesNo;
   endringerAvRefusjon?: YesNo;
   kvitteringEksterntSystem?: SkjemaKvitteringEksterntSystem;
+  manglerInnsendtData: boolean;
 }
 
 export interface SkjemaKvitteringEksterntSystem {
@@ -38,10 +39,10 @@ export interface SkjemaKvitteringEksterntSystem {
 const useSkjemadataStore: StateCreator<CompleteState, [], [], SkjemadataState> = (set) => ({
   inngangFraKvittering: false,
   direkteInngangKvittering: false,
-  tracker: nanoid(),
   nyInnsending: true,
   henterInntektsdata: false,
   skjemaFeilet: false,
+  manglerInnsendtData: false,
   setNyInnsending: (endring: boolean) => {
     set(
       produce((state: SkjemadataState) => {
@@ -110,6 +111,13 @@ const useSkjemadataStore: StateCreator<CompleteState, [], [], SkjemadataState> =
     set(
       produce((state: SkjemadataState) => {
         state.kvitteringEksterntSystem = eksterntSystem;
+      })
+    );
+  },
+  setManglerForespurtData: (mangler: boolean) => {
+    set(
+      produce((state: SkjemadataState) => {
+        state.manglerInnsendtData = mangler;
       })
     );
   }
