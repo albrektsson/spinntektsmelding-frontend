@@ -93,14 +93,14 @@ const useForespurtDataStore: StateCreator<CompleteState, [], [], ForespurtDataSt
     const refusjon = forespurtData?.refusjon?.forslag;
     const inntekt = forespurtData?.inntekt?.forslag;
     const arbeidsgiverperiodePaakrevd = forespurtData?.arbeidsgiverperiode?.paakrevd;
-    console.log('arbeidsgiverperiodePaakrevd', arbeidsgiverperiodePaakrevd);
+
     if (!arbeidsgiverperiodePaakrevd) {
       const harEndringer = sjekkHarEndring(refusjon);
-      const manglerForespurtData = false; //!inntekt?.forrigeInntekt;
-      console.log('manglerForespurtData', manglerForespurtData);
+      const manglerForespurtData = !inntekt?.forrigeInntekt;
+
       setManglerForespurtData(manglerForespurtData);
       const refusjonsbelop = finnRefusjonIArbeidsgiverperioden(refusjon, inntekt?.forrigeInntekt?.skjæringstidspunkt);
-      console.log('refusjonsbelop', refusjonsbelop);
+
       if (!manglerForespurtData) {
         settRefusjonsbelop(refusjonsbelop, harEndringer);
       }
