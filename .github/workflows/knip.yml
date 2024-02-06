@@ -8,6 +8,9 @@ on:
 permissions:
   checks: write
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   knip:
     runs-on: ubuntu-latest
