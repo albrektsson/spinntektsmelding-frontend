@@ -23,7 +23,7 @@ jobs:
           node-version: '20.x'
           registry-url: 'https://npm.pkg.github.com'
       - run: yarn install --frozen-lockfile
-      - run: yarn knip
+      - run: yarn knip --reporter=json
 
       - name: Post the knip results
         uses: codex-/knip-reporter@v1
