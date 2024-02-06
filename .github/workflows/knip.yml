@@ -1,0 +1,24 @@
+name: Knip Reporter
+
+on:
+  pull_request:
+
+# This permissions config is only required if you are not providing
+# own permissive token or if you disable annotations.
+permissions:
+  checks: write
+
+jobs:
+  knip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: 'https://npm.pkg.github.com'
+      - run: yarn install --frozen-lockfile
+      - run: yarn knip
+
+      - name: Post the knip results
+        uses: codex-/knip-reporter@v1
