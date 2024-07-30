@@ -33,7 +33,7 @@ import numberOfDaysInRanges from '../../utils/numberOfDaysInRanges';
 import { Periode } from '../../state/state';
 import { useRouter } from 'next/router';
 import useArbeidsforhold from '../../utils/useArbeidsforhold';
-import { PeriodeSchema } from '../../schema/fullInnsendingSchema';
+import PeriodeSchema from '../../schema/fullInnsendingSchema';
 import useSykepengesoeknader from '../../utils/useSykepengesoeknader';
 import formatIsoDate from '../../utils/formatIsoDate';
 
